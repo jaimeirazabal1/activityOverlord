@@ -1,0 +1,136 @@
+
+<div class="container">
+            <% if (flash && flash.err) {%>
+                <ul class="alert alert-danger">
+                    <% Object.keys(flash.err).forEach(function(error){ %>
+                        <li><%= JSON.stringify(flash.err[error]) %></li>
+                    <% }); %>
+                </ul>   
+            <% }%>
+ <div class="well col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2 col-lg-offset-2">
+<% if(users.length) { %>
+        <% _.each(users,function(user) {%>
+        <div class="row user-row">
+            <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1">
+                <img class="img-circle" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50" alt="User Pic">
+            </div>
+            <div class="col-xs-8 col-sm-9 col-md-10 col-lg-10">
+                <strong><%=user.name %></strong><br>
+                <span class="text-muted">User level: Administrator</span>
+            </div>
+            <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 dropdown-user" data-for=".user<%=user.id %>">
+                <i class="glyphicon glyphicon-chevron-down text-muted"></i>
+            </div>
+        </div>
+        <div class="row user-infos cyruxx user<%=user.id %>">
+            <div class="col-xs-12 col-sm-12 col-md-10 col-lg-10 col-xs-offset-0 col-sm-offset-0 col-md-offset-1 col-lg-offset-1">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">User information</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 hidden-xs hidden-sm">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=100"
+                                     alt="User Pic">
+                            </div>
+                            <div class="col-xs-2 col-sm-2 hidden-md hidden-lg">
+                                <img class="img-circle"
+                                     src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=50"
+                                     alt="User Pic">
+                            </div>
+                            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg">
+                                <strong><%=user.name %></strong><br>
+                                <dl>
+                                    <dt>Title</dt>
+                                    <dd><%=user.title %></dd>
+                                    <dt>Email</dt>
+                                    <dd><%=user.email %></dd>
+                                    <dt>Created</dt>
+                                    <dd><%=user.created_at %></dd>
+                                </dl>
+                            </div>
+                            <div class=" col-md-9 col-lg-9 hidden-xs hidden-sm">
+                                <strong><%=user.name %></strong><br>
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td>Title</td>
+                                        <td><%=user.title %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Email</td>
+                                        <td><%=user.email %></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Created</td>
+                                        <td><%=user.createdAt %></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button class="btn btn-sm btn-primary" type="button"
+                                data-toggle="tooltip"
+                                data-original-title="Send message to user"><i class="glyphicon glyphicon-envelope"></i></button>
+                        <span class="pull-right">
+                            <a class="btn btn-sm btn-warning" type="button"
+                                    data-toggle="tooltip"
+                                    data-original-title="Edit this user" href="/user/edit/<%=user.id %>"><i class="glyphicon glyphicon-edit"></i></a>
+                            <a class="btn btn-sm btn-danger" type="button"
+                                    data-toggle="tooltip"
+                                    data-original-title="Remove this user" href="/user/destroy/<%=user.id %>"><i class="glyphicon glyphicon-remove"></i></a>
+                            <a href="/user/show/<%=user.id %>" class="btn btn-info">Show</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+<% } else{ %>
+    <center>
+        No users yet 
+        <p>
+            <a href="/user/new">Add one</a>
+        </p>
+    </center>
+    </div>
+<% } %>
+</div>
+<style type="text/css">
+    .user-row {
+    margin-bottom: 14px;
+}
+
+.user-row:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-user {
+    margin: 13px 0;
+    padding: 5px;
+    height: 100%;
+}
+
+.dropdown-user:hover {
+    cursor: pointer;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr:first-child {
+    border-top: 0;
+}
+
+
+.table-user-information > tbody > tr > td {
+    border-top: 0;
+}
+
+</style>

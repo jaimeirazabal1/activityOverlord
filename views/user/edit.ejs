@@ -1,0 +1,46 @@
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+
+<div class="row">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+		<form role="form" method="POST" action="/user/update/<%=user.id %>">
+			<h2>Formulario de edicion de usuario <small>It's free and always will be.</small></h2>
+			<% if (flash && flash.err) {%>
+				<ul class="alert alert-danger">
+					<% Object.keys(flash.err).forEach(function(error){ %>
+						<li><%= JSON.stringify(flash.err[error]) %></li>
+					<% }); %>
+				</ul>	
+			<% }%>
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+                        <input type="text" name="name" id="name" value="<%=user.name %>" class="form-control input-lg" placeholder="Name" tabindex="1">
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-6">
+					<div class="form-group">
+						<input type="text" name="title" id="title" value="<%=user.title %>" class="form-control input-lg" placeholder="Title" tabindex="2">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<input type="text" name="email" id="email" value="<%=user.email %>" class="form-control input-lg" placeholder="Email" tabindex="3">
+			</div>
+		
+			
+			<hr class="colorgraph">
+			<div class="row">
+				<div class="col-xs-12 col-md-6"><input type="submit" value="Proceed" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+				<input type="hidden" name="_csrf" value="<%= _csrf %>">
+			</div>
+		</form>
+	</div>
+</div>
+
+</div>
